@@ -12,7 +12,7 @@ from create_ts_samples import *
 from prediction import *
 
 
-def run(args):  
+def run(args):
     # =======================================================================================
     # A. CLASSIFICATION WORKFLOW (DAILY SAMPLES)
     # =======================================================================================
