@@ -106,11 +106,7 @@ def run(args):
         
         # Prediction
         ts_predict_days(
-            input_csv_path=output_path_classification,
-            threshold_start=args.real_threshold_start,
-            threshold_target=args.real_threshold_target,
-            threshold_class=args.real_threshold_class,
-            window=args.real_window 
+            input_csv_path=output_path_classification
         )
     
     

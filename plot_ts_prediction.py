@@ -85,13 +85,13 @@ def plot_daily_class_probabilities(csv_path, output_image_path,
 
     # Axis formatting
     # ax.set_xlabel('Date', color='black', fontsize=10)
-    ax.set_ylabel('Probability', color='black', fontsize=10)
-    ax.tick_params(axis='x', colors='black', rotation=0)
-    ax.tick_params(axis='y', colors='black')
+    ax.set_ylabel('Probability', color='black', fontsize=12)
+    ax.tick_params(axis='x', colors='black', rotation=0, labelsize=12)
+    ax.tick_params(axis='y', colors='black', labelsize=12)
     ax.set_ylim(0, 1)
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
     ax.grid(True, color='gray', linestyle='--', linewidth=0.5, axis='y')
-    ax.legend(fontsize=9)
+    ax.legend(fontsize=10)
 
     # Finalize and save plot
     plt.tight_layout()

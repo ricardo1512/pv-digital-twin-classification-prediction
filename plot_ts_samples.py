@@ -223,13 +223,13 @@ def plot_mppt_ts(ts, local, plot_folder, output_image, condition_title,soiling=F
     ax1.set_ylim(0, ts['mppt_power_clean'].max() * 1.1 if mppt_clean else ts['mppt_power'].max() * 1.1)
     
     # Configure tick labels
-    plt.xticks(rotation=0, ha='center', color='black', fontsize=12)
-    plt.yticks(color='black', fontsize=12)
-    ax1.tick_params(axis='y', labelcolor=color_mppt, labelsize=12)
+    plt.xticks(rotation=0, ha='center', color='black', fontsize=13)
+    plt.yticks(color='black', fontsize=13)
+    ax1.tick_params(axis='y', labelcolor=color_mppt, labelsize=13)
     
     # Create legend only for MPPT lines
     if mppt_clean:
-        ax1.legend(handles=[line1, line2], fontsize=12, loc='upper left')
+        ax1.legend(handles=[line1, line2], fontsize=13, loc='upper left')
     
     # ------------------------------------------
     # Global Tilted Irradiance (secondary axis)
@@ -238,7 +238,7 @@ def plot_mppt_ts(ts, local, plot_folder, output_image, condition_title,soiling=F
     color_gti = MPPT_PALETTE['global_tilted_irradiance']
     ax2.plot(ts.index, ts['global_tilted_irradiance'], color=color_gti, label='Global Tilted Irradiance (W/m²)', linewidth=0.6)
     ax2.set_ylabel("Daily Mean GTI (W/m²)", color=color_gti)
-    ax2.tick_params(axis='y', labelcolor=color_gti, labelsize=12)
+    ax2.tick_params(axis='y', labelcolor=color_gti, labelsize=13)
 
     # ----------------------------------------------
     # Diffuse Horizontal Irradiance (tertiary axis)
@@ -248,7 +248,7 @@ def plot_mppt_ts(ts, local, plot_folder, output_image, condition_title,soiling=F
     color_dr = MPPT_PALETTE['diffuse_radiation']
     ax3.plot(ts.index, ts['diffuse_radiation'], color=color_dr, label='Diffuse Radiation (W/m²)', linewidth=0.6)
     ax3.set_ylabel("Daily Mean DHI (W/m²)", color=color_dr)
-    ax3.tick_params(axis='y', labelcolor=color_dr, labelsize=12)
+    ax3.tick_params(axis='y', labelcolor=color_dr, labelsize=13)
 
     # Adjust Y-axis limits for irradiances
     max_rad = max(ts['diffuse_radiation'].max(), ts['global_tilted_irradiance'].max()) * 1.1
@@ -263,7 +263,7 @@ def plot_mppt_ts(ts, local, plot_folder, output_image, condition_title,soiling=F
     color_temp = MPPT_PALETTE['temperature_2m']
     ax4.plot(ts.index, ts['temperature_2m'], color=color_temp, linewidth=0.5, label='Air Temperature (°C)')
     ax4.set_ylabel("Daily Mean Air Temp (°C)", color=color_temp)
-    ax4.tick_params(axis='y', labelcolor=color_temp, labelsize=12)
+    ax4.tick_params(axis='y', labelcolor=color_temp, labelsize=13)
 
     # --------------------------
     # Wind Speed (quinary axis)
@@ -273,7 +273,7 @@ def plot_mppt_ts(ts, local, plot_folder, output_image, condition_title,soiling=F
     color_wind = MPPT_PALETTE['wind_speed_10m']
     ax5.plot(ts.index, ts['wind_speed_10m'], color=color_wind, linewidth=0.5, label='Wind Speed (m/s)')
     ax5.set_ylabel("Daily Mean Wind Speed (m/s)", color=color_wind)
-    ax5.tick_params(axis='y', labelcolor=color_wind, labelsize=12)
+    ax5.tick_params(axis='y', labelcolor=color_wind, labelsize=13)
     ax5.set_ylim(0, ts['wind_speed_10m'].max() * 1.1)
     
     # --------------------------------------
@@ -285,7 +285,7 @@ def plot_mppt_ts(ts, local, plot_folder, output_image, condition_title,soiling=F
         color_precip = MPPT_PALETTE['precipitation']
         ax6.plot(ts.index, ts['precipitation'], color=color_precip, linewidth=0.5, label='Precipitation (mm/h)')
         ax6.set_ylabel("Daily Sum Precipitation (mm/h)", color=color_precip)
-        ax6.tick_params(axis='y', labelcolor=color_precip, labelsize=12)
+        ax6.tick_params(axis='y', labelcolor=color_precip, labelsize=13)
         # Normalize y-axis for small precipitation values
         if ts['precipitation'].max() < 1:
             ax6.set_ylim(0, 1)  # Normalize y-axis
