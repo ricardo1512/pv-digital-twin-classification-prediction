@@ -24,7 +24,7 @@ def plot_voltage(df_original, date, condition_title, output_folder, filename):
     # Filter data by time
     df = df_original.between_time(PLOT_TIME_INIT, PLOT_TIME_END)
     
-    # Check if the DataFrame contains the column for reference MPPT power measurements
+    # Check if the DataFrame contains the column for reference DC Power measurements
     pv1_u_clean = 'pv1_u_clean' in df.columns
 
     # Ensure output folder exists
@@ -208,7 +208,7 @@ def plot_currents(df_original, date, condition_title, output_folder, filename, s
 
 def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soiling=False):
     """
-    Plots MPPT powers (reference and effective), irradiances (GTI & DHI), air temperature, wind speed and precipitation
+    Plots DC Power(reference and effective), irradiances (GTI & DHI), air temperature, wind speed and precipitation
     on the same graph using multiple Y-axes.
 
     Args:
@@ -220,7 +220,7 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
         - soiling (bool): If True, adds precipitation axis.
             
     Notes:
-        - MPPT powers is plotted on the primary Y-axis (left).
+        - DC Power is plotted on the primary Y-axis (left).
         - Global Tilted Irradiance (GTI) and Diffuse Horizontal Irradiance (DHI)
           are plotted on secondary and tertiary Y-axes respectively (right).
         - Air temperature and wind speed are plotted on quaternary and quinary Y-axes (right).
@@ -231,7 +231,7 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     # Filter data by time
     df = df_original.between_time(PLOT_TIME_INIT, PLOT_TIME_END)
     
-    # Check if the DataFrame contains the column for reference MPPT power measurements
+    # Check if the DataFrame contains the column for reference DC Power measurements
     mppt_clean = 'mppt_power_clean' in df.columns
     
     # Ensure output folder exists
@@ -244,10 +244,10 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     # -------------------------
     color_mppt = MPPT_PALETTE['mppt_power']
     if mppt_clean:
-        line1, = ax1.plot(df.index, df['mppt_power_clean'], color=MPPT_PALETTE['mppt_power_clean'], label='Reference MPPT', linewidth=2, linestyle=':')
-    line2, = ax1.plot(df.index, df['mppt_power'], color=color_mppt, label='Effective MPPT', linewidth=3)
+        line1, = ax1.plot(df.index, df['mppt_power_clean'], color=MPPT_PALETTE['mppt_power_clean'], label='Reference DC Power', linewidth=2, linestyle=':')
+    line2, = ax1.plot(df.index, df['mppt_power'], color=color_mppt, label='Effective DC Power', linewidth=3)
     # ax1.set_xlabel("Time")
-    ax1.set_ylabel("MPPT (kW)", color=color_mppt)
+    ax1.set_ylabel("DC Power (kW)", color=color_mppt)
 
     # Configure tick labels
     plt.xticks(rotation=0, ha='center', color='black', fontsize=12)
