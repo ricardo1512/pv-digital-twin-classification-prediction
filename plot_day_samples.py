@@ -51,8 +51,8 @@ def plot_voltage(df_original, date, condition_title, output_folder, filename):
     ax.set_ylim(0, max_y)
     
     # Configure tick labels
-    plt.xticks(rotation=0, ha='center', color='black', fontsize=8)
-    plt.yticks(color='black', fontsize=8)
+    plt.xticks(rotation=0, ha='center', color='black', fontsize=10)
+    plt.yticks(color='black', fontsize=10)
     
     # Axis labels and tick colors
     ax.set_xlabel("Time")
@@ -133,8 +133,8 @@ def plot_currents(df_original, date, condition_title, output_folder, filename, s
     ax1.set_ylim(0, max_y)
     
     # Configure tick labels
-    plt.xticks(rotation=0, ha='center', color='black', fontsize=8)
-    plt.yticks(color='black', fontsize=8)
+    plt.xticks(rotation=0, ha='center', color='black', fontsize=10)
+    plt.yticks(color='black', fontsize=10)
 
     # Label axes and set tick colors
     ax1.set_xlabel("Time")
@@ -250,8 +250,8 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     ax1.set_ylabel("MPPT (kW)", color=color_mppt)
 
     # Configure tick labels
-    plt.xticks(rotation=0, ha='center', color='black', fontsize=8)
-    plt.yticks(color='black', fontsize=8)
+    plt.xticks(rotation=0, ha='center', color='black', fontsize=10)
+    plt.yticks(color='black', fontsize=10)
     ax1.tick_params(axis='y', labelcolor=color_mppt)
         
     # Adjust Y-axis limits for MPPT
