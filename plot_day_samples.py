@@ -41,7 +41,7 @@ def plot_voltage(df_original, date, condition_title, output_folder, filename):
     
     # Create legend only for MPPT lines
     if pv1_u_clean:
-        ax.legend(handles=[line1, line2], fontsize=10, loc='upper left')
+        ax.legend(handles=[line1, line2], fontsize=13, loc='upper left')
 
     # Horizontal grid lines
     ax.grid(True, axis='y', linestyle='--', alpha=0.6)
@@ -51,14 +51,14 @@ def plot_voltage(df_original, date, condition_title, output_folder, filename):
     ax.set_ylim(0, max_y)
     
     # Configure tick labels
-    plt.xticks(rotation=0, ha='center', color='black', fontsize=10)
-    plt.yticks(color='black', fontsize=10)
+    plt.xticks(rotation=0, ha='center', color='black', fontsize=13)
+    plt.yticks(color='black', fontsize=13)
     
     # Axis labels and tick colors
-    ax.set_xlabel("Time")
+    # ax.set_xlabel("Time")
     ax.set_ylabel("Voltage (V)", color=color_volt)
-    ax.tick_params(axis='x', colors='black', labelsize=8)
-    ax.tick_params(axis='y', labelcolor=color_volt, labelsize=8)
+    ax.tick_params(axis='x', colors='black', labelsize=13)
+    ax.tick_params(axis='y', labelcolor=color_volt, labelsize=13)
 
     # Format x-axis as HH:MM
     ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
@@ -133,14 +133,14 @@ def plot_currents(df_original, date, condition_title, output_folder, filename, s
     ax1.set_ylim(0, max_y)
     
     # Configure tick labels
-    plt.xticks(rotation=0, ha='center', color='black', fontsize=10)
-    plt.yticks(color='black', fontsize=10)
+    plt.xticks(rotation=0, ha='center', color='black', fontsize=13)
+    plt.yticks(color='black', fontsize=13)
 
     # Label axes and set tick colors
-    ax1.set_xlabel("Time")
+    # ax1.set_xlabel("Time")
     ax1.set_ylabel("Current (A)", color=color_curr)
-    ax1.tick_params(axis='x', colors='black', labelsize=8)
-    ax1.tick_params(axis='y', labelcolor=color_curr, labelsize=8)
+    ax1.tick_params(axis='x', colors='black', labelsize=13)
+    ax1.tick_params(axis='y', labelcolor=color_curr, labelsize=13)
 
     # Add horizontal grid lines with light transparency
     ax1.grid(True, axis='y', linestyle='--', alpha=0.6)
@@ -190,7 +190,7 @@ def plot_currents(df_original, date, condition_title, output_folder, filename, s
         handles.append(line_red)
         
     # Create a single combined legend for all handles
-    ax1.legend(handles=handles, fontsize=10, loc='upper left')
+    ax1.legend(handles=handles, fontsize=12, loc='upper left')
         
     # Adjust layout to avoid clipping of labels
     plt.tight_layout()
@@ -246,20 +246,24 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     if mppt_clean:
         line1, = ax1.plot(df.index, df['mppt_power_clean'], color=MPPT_PALETTE['mppt_power_clean'], label='Reference MPPT', linewidth=2, linestyle=':')
     line2, = ax1.plot(df.index, df['mppt_power'], color=color_mppt, label='Effective MPPT', linewidth=3)
-    ax1.set_xlabel("Time")
+    # ax1.set_xlabel("Time")
     ax1.set_ylabel("MPPT (kW)", color=color_mppt)
 
     # Configure tick labels
-    plt.xticks(rotation=0, ha='center', color='black', fontsize=10)
-    plt.yticks(color='black', fontsize=10)
-    ax1.tick_params(axis='y', labelcolor=color_mppt)
+    plt.xticks(rotation=0, ha='center', color='black', fontsize=12)
+    plt.yticks(color='black', fontsize=12)
+    ax1.tick_params(axis='y', labelcolor=color_mppt, labelsize=12)
         
     # Adjust Y-axis limits for MPPT
-    ax1.set_ylim(0, df['mppt_power_clean'].max() * 1.1 if mppt_clean else df['mppt_power'].max() * 1.1)
+    y_max = df['mppt_power_clean'].max() if mppt_clean else df['mppt_power'].max()
+    if y_max > 0:
+        ax1.set_ylim(0, y_max * 1.1)
+    else:
+        ax1.set_ylim(0, 1)
     
     # Create legend only for MPPT lines
     if mppt_clean:
-        ax1.legend(handles=[line1, line2], fontsize=10, loc='upper left')
+        ax1.legend(handles=[line1, line2], fontsize=12, loc='upper left')
         
     # ------------------------------------------
     # Global Tilted Irradiance (secondary axis)
@@ -269,7 +273,7 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     ax2.plot(df.index, df['global_tilted_irradiance'], color=color_gti,
              label='Global Tilted Irradiance (W/m²)', linewidth=0.9)
     ax2.set_ylabel("GTI (W/m²)", color=color_gti)
-    ax2.tick_params(axis='y', labelcolor=color_gti)
+    ax2.tick_params(axis='y', labelcolor=color_gti, labelsize=12)
 
     # ----------------------------------------------
     # Diffuse Horizontal Irradiance (tertiary axis)
@@ -280,7 +284,7 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     ax3.plot(df.index, df['diffuse_radiation'], color=color_dr,
              label='Diffuse Radiation (W/m²)', linewidth=0.6)
     ax3.set_ylabel("DHI (W/m²)", color=color_dr)
-    ax3.tick_params(axis='y', labelcolor=color_dr)
+    ax3.tick_params(axis='y', labelcolor=color_dr, labelsize=12)
 
     # Adjust Y-axis limits for irradiances
     max_rad = max(df['diffuse_radiation'].max(), df['global_tilted_irradiance'].max()) * 1.1
@@ -295,7 +299,7 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     color_temp = MPPT_PALETTE['temperature_2m']
     ax4.plot(df.index, df['temperature_2m'], color=color_temp, linewidth=0.5, label='Air Temperature (°C)')
     ax4.set_ylabel("Air Temp (°C)", color=color_temp)
-    ax4.tick_params(axis='y', labelcolor=color_temp)
+    ax4.tick_params(axis='y', labelcolor=color_temp, labelsize=12)
 
     # --------------------------
     # Wind Speed (quinary axis)
@@ -305,7 +309,7 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     color_wind = MPPT_PALETTE['wind_speed_10m']
     ax5.plot(df.index, df['wind_speed_10m'], color=color_wind, linewidth=0.5, label='Wind Speed (m/s)')
     ax5.set_ylabel("Wind Speed (m/s)", color=color_wind)
-    ax5.tick_params(axis='y', labelcolor=color_wind)
+    ax5.tick_params(axis='y', labelcolor=color_wind, labelsize=12)
     
     # Adjust Y-axis limits for wind spead
     ax5.set_ylim(0, df['wind_speed_10m'].max() * 1.1)
@@ -319,7 +323,7 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
         color_precip = MPPT_PALETTE['precipitation']
         ax6.plot(df.index, df['precipitation'], color=color_precip, linewidth=0.5, label='Precipitation (mm/h)')
         ax6.set_ylabel("Precipitation (mm/h)", color=color_precip)
-        ax6.tick_params(axis='y', labelcolor=color_precip)
+        ax6.tick_params(axis='y', labelcolor=color_precip, labelsize=12)
         # Normalize y-axis for small precipitation values
         if df['precipitation'].max() < 1:
             ax6.set_ylim(0, 1)  # normalize y-axis
@@ -359,7 +363,7 @@ def plot_mppt(df_original, date, condition_title, plot_folder, output_image, soi
     plt.close()
     
     # Confirm saving
-    print(f"MPPT plot saved to {image_path}")
+    print(f"DC Power plot saved to {image_path}")
     
     
 def plot_scatter_iv(df_plot, output_folder, filename):
@@ -409,12 +413,12 @@ def plot_scatter_iv(df_plot, output_folder, filename):
     # plt.title(f"PV1 I–V Scatter by Inverter State, {LOCAL}", fontsize=18, verticalalignment='bottom', color='black')
 
     # Ticks & grid
-    ax.tick_params(axis='x', colors='black', labelsize=9)
-    ax.tick_params(axis='y', colors='black', labelsize=9)
+    ax.tick_params(axis='x', colors='black', labelsize=10)
+    ax.tick_params(axis='y', colors='black', labelsize=10)
     ax.grid(True, linestyle='--', alpha=0.6)
 
     # Legend
-    leg = ax.legend(handles=handles, loc='upper left', fontsize=9)
+    leg = ax.legend(handles=handles, loc='upper left', fontsize=10)
     leg.get_frame().set_facecolor('white')
     leg.get_frame().set_edgecolor('gray')
     leg.get_title().set_color('black')

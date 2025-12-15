@@ -154,6 +154,10 @@ def create_samples_6_diode(files_year, plot_samples=False):
 
     print(f"{condition_name.upper()}: Starting simulation...\n")
     for _, (date, group) in enumerate(daily_groups):
+        from datetime import date as dt_date
+        if date != dt_date(2024, 2, 21):
+            continue
+        
         print(f"{condition_name.title():<8} | Running simulation for {date}...")
 
         # Prepare daily data
