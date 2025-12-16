@@ -47,7 +47,7 @@ class PVPlant:
             surface_tilt=self.surface_tilt,
             surface_azimuth=self.surface_azimuth,
             albedo=self.albedo,
-            inverter_parameters=self.inverter_data,  
+            inverter_parameters=self.inverter_data,   
         )
 
 # ==============================================================
