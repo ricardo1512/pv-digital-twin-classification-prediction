@@ -1,0 +1,2 @@
+date,class,predicted_days_to_target,predicted_date,actual_class_at_predicted_day,slope,intercept,threshold_start,threshold_target,threshold_class,window
+2024-05-20,Shading,9,2024-05-29,Shading,0.0009105597591831358,0.6514806751779709,0.4,0.7,0.1,45

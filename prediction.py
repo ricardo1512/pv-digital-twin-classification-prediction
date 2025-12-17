@@ -146,7 +146,7 @@ def synthetic_ts_daily_classification(all_year=False, winter=False):
     
     # Base folder where raw synthetic CSV files are stored
     base_folder = Path(TS_SAMPLES_FOLDER)
-    output_base = Path(PREDICTIONS_FOLDER) / "real_data_probabilities"
+    output_base = Path(PREDICTIONS_FOLDER)
     
     # Iterate over subfolders that contain raw synthetic CSV files
     for subfolder in [f for f in base_folder.iterdir() if f.is_dir() and not f.name.startswith("real_data")]:
@@ -155,8 +155,8 @@ def synthetic_ts_daily_classification(all_year=False, winter=False):
         # Iterate over all raw synthetic CSV files inside the subfolder
         for file_path in subfolder.glob("*.csv"):
             print(f"\n\t\tProcessing file: {file_path.name}")
-            output_csv_path = output_base / f"{file_path.stem}_daily_probabilities.csv"
-            ts_daily_classification(file_path, output_csv_path=output_csv_path, all_year=all_year, winter=winter)
+            output_csv_path = output_base / (subfolder.name + "_probabilities") / f"{file_path.stem}_daily_probabilities.csv"
+            ts_daily_classification(file_path, output_csv_path=output_csv_path, all_year=all_year, winter=winter, smoothing=0)
             
 
 def ts_predict_days(input_csv_path, output_folder=None, accuracy_threshold=75):
@@ -379,7 +379,6 @@ def synthetic_ts_prediction(accuracy_threshold=75):
 
     # Iterate over subfolders that contain probability CSV files
     for subfolder in [f for f in base_folder.iterdir() if f.is_dir() and f.name.endswith('_probabilities') and not f.name.startswith("real_data")]:
-        
         subfolder_name = subfolder.name
         print(f"\tProcessing subfolder: {subfolder_name}")
 

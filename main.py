@@ -85,12 +85,7 @@ def run(args):
 
     # B.2.2. Predict Anomalies
     if args.synthetic_ts_prediction:
-        synthetic_ts_prediction(
-            threshold_start=args.synt_threshold_start,
-            threshold_target=args.synt_threshold_target,
-            threshold_class=args.synt_threshold_class,
-            window=args.synt_window,
-        )
+        synthetic_ts_prediction()
 
     # ----------------------------------------------------------------------------------------
     # B.3. Perform Daily Classification and Prediction in Real Time Series, with Plots

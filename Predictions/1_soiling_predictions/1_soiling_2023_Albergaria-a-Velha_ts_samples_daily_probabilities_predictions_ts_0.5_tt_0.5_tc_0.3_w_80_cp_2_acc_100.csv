@@ -1,0 +1,3 @@
+date,class,predicted_days_to_target,predicted_date,actual_class_at_predicted_day,slope,intercept,threshold_start,threshold_target,threshold_class,window
+2023-06-26,Soiling,47,2023-08-12,Soiling,0.0013136114119831226,0.3342072493491667,0.5,0.5,0.3,80
+2023-06-27,Soiling,8,2023-07-05,Soiling,0.0023858866016268168,0.29168548935824073,0.5,0.5,0.3,80
