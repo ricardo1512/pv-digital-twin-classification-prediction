@@ -338,8 +338,7 @@ python main.py --real_ts_prediction "TS_samples/real_data/inverter_Aveiro_060.cs
 | B.1. Create anomaly time-series samples | `python main.py --create_ts_samples` |
 | B.2.1. Daily classification in multiple synthetic time series | `python main.py --synthetic_ts_daily_classification` |
 | B.2.2. Predict anomalies in synthetic time series | `python main.py --synthetic_ts_prediction` |
-| B.2.2. Predict anomalies in synthetic time series with all parameters | `python main.py --synthetic_ts_prediction --synt_threshold_start <v> --synt_threshold_target <v> --synt_threshold_class <v> --synt_window <N>` |
-| B.3.  Daily classification and prediction in real time series with all parameters | `python main.py --real_ts_prediction <path> --ts_smooth <N> --real_threshold_target <v> --real_threshold_class <v> --real_window <N>` |
+| B.3.  Daily classification and prediction in real time series | `python main.py --real_ts_prediction <path> --ts_smooth <N>` |
 
 ---
 
@@ -369,8 +368,8 @@ For both classification and prediction, the dataset is expected to represent a P
 | `a_i`                      | Phase A current                                       | float    | A           |
 | `b_i`                      | Phase B current                                       | float    | A           |
 | `c_i`                      | Phase C current                                       | float    | A           |
-| `mppt_power`               | MPPT output power                               | float    | kW           |
-| `active_power`             | Inverter active power                                 | float    | kW           |
+| `mppt_power`               | DC power                               | float    | kW           |
+| `active_power`             | AC power                                 | float    | kW           |
 | `efficiency`               | Inverter instantaneous efficiency                     | float    | %           |
 | `inv_temperature`          | Inverter internal temperature                         | float    | °C          |
 | `temperature_2m`           | Ambient temperature at 2 meters                       | float    | °C          |
