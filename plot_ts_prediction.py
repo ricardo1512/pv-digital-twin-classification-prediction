@@ -297,8 +297,8 @@ def pareto_plot(df_pareto, df_all_results, input_csv_path, output_image_folder):
     plt.tight_layout()
     
     # Save plot
-    plt.savefig(output_image_folder / f"{input_csv_path.stem}_pareto_front.png")
-    print(f"Pareto front plot saved to {output_image_folder / f'{input_csv_path.stem}_pareto_front.png'}")
+    plt.savefig(output_image_folder / f"{input_csv_path.stem.replace('_daily_probabilities', '')}_pareto_front.png")
+    print(f"Pareto front plot saved to {output_image_folder / f'{input_csv_path.stem.replace('_daily_probabilities', '')}_pareto_front.png'}")
     
     # Close plot to free memory
     plt.close()

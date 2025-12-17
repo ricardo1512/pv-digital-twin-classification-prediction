@@ -95,14 +95,14 @@ The end-to-end pipeline is divided into **Classification** and **Prediction** wo
 #### 2.1. Create and Preprocess the Inference Test Set
 - Preprocesses real inverter data for model inference.
 - Recommended to apply smoothing to reduce noise from cloud transients or measurement fluctuations.
-- Supports configuration of smoothing window (12 for each hour).
+- Supports configuration of smoothing window (12 for each hour; default: 24).
 - **Script:** `create_preprocess_inference_set.py`
 - **CLI Options:** `--create_inference_set`, `--create_inference_set_smooth`, `--all_year`, `--winter`
 
 #### 2.2. Perform Inference on Real Data
 - Performs model inference on the prepared dataset.
 - Generates diagnostic reports including probability distributions and anomaly recommendations.
-- **Delta (`--delta`) and Top (`--top`) options** are used for **probabilistic recommendation analysis**:
+- **Delta and Top options** are used for **probabilistic recommendation analysis**:
   - `--top` selects the N most important class probabilities for inspection.
   - `--delta` defines a tolerance value: if a class probability is within `delta` of the highest class probability, it will also be considered as a potential recommendation.
 - **Script:** `inference.py`
@@ -128,25 +128,18 @@ The end-to-end pipeline is divided into **Classification** and **Prediction** wo
 - **CLI Option:** `--synthetic_ts_daily_classification`
 
 #### 2.2. Predict Anomalies
-- Predicts future anomalies in synthetic time series using configurable thresholds and window sizes.
-- Generates visualizations of predicted anomaly days.
+- Predicts future anomalies in synthetic time series.
+- Generates visualizations of predicted anomaly days and Pareto scenarios.
 - **Script:** `prediction.py`
-- **CLI Options:** `--synthetic_ts_prediction`,`--synt_threshold_start`, `--synt_threshold_target`, `--synt_threshold_class`, `--synt_window`
+- **CLI Option:** `--synthetic_ts_prediction`
 
 
 ### 3. Perform Daily Classification and Prediction in Real Time Series, with Plots
 - Performs daily classification on real inverter time series data.
-- Optional smoothing can be applied to reduce measurement noise.
+- Optional smoothing can be applied to reduce measurement noise (12 for each hour; default: 48).
 - **Script:** `prediction.py`
-- **CLI Options:** `--real_ts_prediction`, `--ts_smooth`, `real_threshold_start`, `--real_threshold_target`, `--real_threshold_class`, `--real_window`, `--all_year`, `--winter`
+- **CLI Options:** `--real_ts_prediction`, `--ts_smooth`, `--all_year`, `--winter`
 
-### Note: 
-**Time-Series Prediction sensitivity analysis parameters:**
-  - `start` (`--*_threshold_start`): start percentage from which regression begins.
-  - `target` (`--*_threshold_target`): target percentage in the future that the regression aims to exceed.
-  - `class` (`--*_threshold_class`): class tolerance, allowing prediction to be considered correct if it is within this delta below the majority class probability.
-  - `window` (`--*_window`): number of past samples considered for regression.
----
 
 ## C. Options
 - CLI options can be combined to run multiple workflow stages in sequence.
@@ -279,13 +272,18 @@ Outputs:
 
 Inputs:
 - Daily probability CSV file:  
-  - `Predictions/real_data_probabilities/*.csv`   
+  - `Predictions/*_probabilities/*.csv` (synthetic)
+  - `Predictions/*_probabilities/*.csv` (real)   
 
 Outputs:
 - Predictions CSV with estimated days to reach target probability:  
-  - `Predictions/real_data_predictions/*_daily_predictions.csv`  
+  - `Predictions/*_predictions/*_daily_predictions.csv` (synthetic)
+  - `Predictions/*_predictions/*_daily_predictions.csv` (real)
 - Prediction plot (Cleveland-style) for visualizing estimated days:  
-  - `Plots/TS_predictions/*_predictions_cleveland.png`  
+  - `Plots/TS_predictions/*_predictions_cleveland.png` (synthetic)
+  - `Plots/TS_predictions/real_data_predictions_cleveland.png` (real)
+- Parato chart for visualizing best scenarios:  
+  - `Plots/TS_predictions/*_pareto_front.png` (synthetic and real)
 
 ---
 ## Usage / How to Run

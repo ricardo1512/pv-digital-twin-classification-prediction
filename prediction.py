@@ -333,7 +333,7 @@ def ts_predict_days(input_csv_path, output_folder=None, accuracy_threshold=75):
         )
 
         output_csv = output_folder / f"{input_csv_path.stem}_predictions_{param_suffix}.csv"
-        output_png = output_image_folder / f"{input_csv_path.stem}_predictions_{param_suffix}.png"
+        output_png = output_image_folder / f"{input_csv_path.stem.replace('_daily_probabilities', '')}_predictions_{param_suffix}.png"
 
         df_predictions.to_csv(output_csv, index=False)
         print(f"Predictions exported to: {output_csv}")
