@@ -173,14 +173,6 @@ if __name__ == '__main__':
     # B.2.2. Predict Anomalies
     parser.add_argument('--synthetic_ts_prediction', action='store_true', 
                         help="Perform prediction in synthetic time series.")
-    parser.add_argument('--synt_threshold_start', type=float, default=0.5,
-                        help="Threshold to start predicting an anomaly [Default: 0.5].")
-    parser.add_argument('--synt_threshold_target', type=float, default=0.8,
-                        help="Target threshold for predicting an anomaly [Default: 0.8].")
-    parser.add_argument('--synt_threshold_class', type=float, default=0.2,
-                        help="Class threshold for predicting an anomaly [Default: 0.2].")
-    parser.add_argument('--synt_window', type=int, default=30,
-                        help="Window size for prediction [Default: 30].")
     
     # ---------------------------------------------------------------------------------------
     # B.3. Perform Daily Classification and Prediction in Real Time Series, with Plots
@@ -189,14 +181,6 @@ if __name__ == '__main__':
                         help="Perform daily classification with path to real time series.")
     parser.add_argument('--ts_smooth', type=int, default=48,
                         help="Apply smoothing to real time series [Default: 48 (4 hours)].")
-    parser.add_argument('--real_threshold_start', type=float, default=0.5,
-                        help="Threshold to start predicting an anomaly [Default: 0.5].")
-    parser.add_argument('--real_threshold_target', type=float, default=0.8,
-                        help="Target threshold for predicting an anomaly [Default: 0.8].")
-    parser.add_argument('--real_threshold_class', type=float, default=0.2,
-                        help="Class threshold for predicting an anomaly [Default: 0.2].")
-    parser.add_argument('--real_window', type=int, default=30,
-                        help="Window size for prediction [Default: 30].")
     
     # Parse arguments and run
     args = parser.parse_args()
