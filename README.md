@@ -104,7 +104,7 @@ The end-to-end pipeline is divided into **Classification** and **Prediction** wo
 - Generates diagnostic reports including probability distributions and anomaly recommendations.
 - **Delta and Top options** are used for **probabilistic recommendation analysis**:
   - `--top` selects the N most important class probabilities for inspection.
-  - `--delta` defines a tolerance value: if a class probability is within `delta` of the highest class probability, it will also be considered as a potential recommendation.
+  - `--delta` defines a tolerance value: if a class probability is within `delta` of the highest class probability, and the highest probability is below 0.7, it will also be considered as a potential recommendation.
 - **Script:** `inference.py`
 - **CLI Options:** `--inference_run_user`, `--inference_smooth`,`--inference_run_user`, `--delta`, `--top`, `--all_year`, `--winter`
 
